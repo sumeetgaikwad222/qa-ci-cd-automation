@@ -13,10 +13,6 @@ on:
 
   workflow_dispatch:
 
-# Permissions required by this workflow
-permissions:
-  contents: read
-
 # Jobs to execute
 jobs:
 
