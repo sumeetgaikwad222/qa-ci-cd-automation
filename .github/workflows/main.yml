@@ -1,0 +1,61 @@
+
+name: QA Automation CI Pipeline
+
+# Events that trigger this workflow
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+# Jobs to execute
+jobs:
+
+  # Job 1: Execute automation tests
+  automation-tests:
+
+    # GitHub-hosted machine
+    runs-on: ubuntu-latest
+
+    # Maximum execution time
+    timeout-minutes: 20
+
+    # Steps executed sequentially
+    steps:
+
+      # Step 1: Download project source code
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      # Step 2: Install Java
+      - name: Set Up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '11'
+          cache: maven
+
+      # Step 3: Display Java and Maven versions
+      - name: Verify Java and Maven
+        run: |
+          java -version
+          mvn -version
+
+      # Step 4: Execute Maven TestNG tests
+      - name: Execute Automation Tests
+        run: mvn -B clean test
+
+      # Step 5: Upload TestNG reports
+      - name: Upload TestNG Reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: testng-reports
+          path: target/surefire-reports/
+          if-no-files-found: warn
+          retention-days: 7
