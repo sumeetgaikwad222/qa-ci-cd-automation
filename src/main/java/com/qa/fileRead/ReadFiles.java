@@ -102,7 +102,7 @@ public class ReadFiles {
     }
 
     // Get last cell number
-    public int getLastCell(String path, String sheetName, int rowNumber)
+    public int getLastCell(String path, String sheetName)
             throws EncryptedDocumentException, IOException {
 
         try (FileInputStream fis = new FileInputStream(path);
@@ -110,11 +110,11 @@ public class ReadFiles {
 
             Sheet sheet = wb.getSheet(sheetName);
 
-            if (sheet == null || sheet.getRow(rowNumber) == null) {
+            if (sheet == null) {
                 return 0;
             }
 
-            return sheet.getRow(rowNumber).getLastCellNum();
+            return sheet.getRow(0).getLastCellNum();
         }
     }
 }
