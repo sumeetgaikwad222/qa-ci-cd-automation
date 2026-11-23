@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.time.Duration;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.annotations.*;
 import com.qa.fileRead.ReadFiles;
@@ -23,7 +24,12 @@ public class BaseClass implements Constant{
 		switch (browser.trim().toLowerCase()) {
 		case "chrome":
 			WebDriverManager.chromedriver().setup();
-			driver.set(new ChromeDriver());
+			ChromeOptions options = new ChromeOptions();
+			options.addArguments("--headless=new");
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-dev-shm-usage");
+            options.addArguments("--window-size=1920,1080");
+			driver.set(new ChromeDriver(options));
 			break;
 		case  "edge":
 			System.setProperty(MSEDGEKey, MSEDGEDriverPath);
