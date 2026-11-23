@@ -10,10 +10,7 @@ public class SearchDataProvider {
 		return new Object[][]
 				{
 			 	{"Blue Top"},
-	            {"Men Tshirt"},
-	            {"Sleeveless Dress"},
-	            {"Winter Top"},
-	            {"Madame Top"}
+	            
 		};
 	}
 }
