@@ -25,10 +25,6 @@ jobs:
     # Maximum execution time
     timeout-minutes: 20
 
-    # Environment variables
-    env:
-      CI: true
-
     # Steps executed sequentially
     steps:
 
