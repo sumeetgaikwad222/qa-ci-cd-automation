@@ -30,6 +30,12 @@ public class BaseClass implements Constant{
             options.addArguments("--disable-dev-shm-usage");
             options.addArguments("--window-size=1920,1080");
 			driver.set(new ChromeDriver(options));
+			System.out.println("========== CHROME CONFIGURATION ==========");
+			System.out.println("Chrome Options: " + options.asMap());
+			System.out.println("CI Environment: " + System.getenv("CI"));
+			System.out.println("==========================================");
+
+			driver.set(new ChromeDriver(options));
 			break;
 		case  "edge":
 			System.setProperty(MSEDGEKey, MSEDGEDriverPath);
